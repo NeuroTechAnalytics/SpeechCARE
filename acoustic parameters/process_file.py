@@ -137,7 +137,7 @@ def process_file_model(filepath, vad_model, utils, transcription_model):
     pause_behavior = PauseBehavior(vad_model, utils, transcription_model)
     pause_behavior.configure(filepath)
     
-    voiceProb_signal =  vad_model.audio_forward(pause_behavior.data, sr=16000, num_samples=512)
+    voiceProb_signal =  vad_model.audio_forward(pause_behavior.data, sr=16000)
     voiceProb_signal = np.array(voiceProb_signal[0])
     prob = process_row(voiceProb_signal, "voiceProb")
 
