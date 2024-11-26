@@ -5,7 +5,7 @@ from nltk.tokenize import word_tokenize
 
 import statistics
 
-from behavior_helper import calculate_duration_ms, remove_subranges
+from speech_fluency_and_speech_production_dynamics_helper import calculate_duration_ms, remove_subranges
 
 nltk.download('punkt')
 
