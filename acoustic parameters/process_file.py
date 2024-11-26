@@ -204,7 +204,10 @@ def process_row(row, feature_name, index=-1):
     results = {}
     for func_name in function_names:
         func = getattr(sys.modules[__name__], func_name)
-        result = func(row_sma)
+        try:
+            result = func(row_sma)
+        except:
+            result = None
         if index >= 0:
             name = f"{feature_name}_sma[{index}]_{func_name}"
         else:
@@ -215,7 +218,10 @@ def process_row(row, feature_name, index=-1):
     row_sma_de = de(row_sma)
     for func_name in function_names:
         func = getattr(sys.modules[__name__], func_name)
-        result = func(row_sma_de)
+        try:
+            result = func(row_sma_de)
+        except:
+            result = None
         if index >= 0:
             name = f"{feature_name}_sma_de[{index}]_{func_name}"
         else:
