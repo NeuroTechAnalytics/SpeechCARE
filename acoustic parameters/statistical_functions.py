@@ -38,26 +38,38 @@ def amean(frame):
 def linregc1(frame):
     frame = frame[~np.isnan(frame)]
     x = np.arange(len(frame))
-    m, _ = np.polyfit(x, frame, 1)
+    try:
+        m, _ = np.polyfit(x, frame, 1)
+    except:
+        return 0
     return m
 
 def linregc2(frame):
     frame = frame[~np.isnan(frame)]
     x = np.arange(len(frame))
-    _, t = np.polyfit(x, frame, 1)
+    try:
+        _, t = np.polyfit(x, frame, 1)
+    except:
+        return 0
     return t
 
 def linregerrA(frame):
     frame = frame[~np.isnan(frame)]
     x = np.arange(len(frame))
-    m, t = np.polyfit(x, frame, 1)
+    try:
+        m, t = np.polyfit(x, frame, 1)
+    except:
+        m = t = 0
     linear_fit = m * x + t
     return np.sum(np.abs(linear_fit - frame))
 
 def linregerrQ(frame):
     frame = frame[~np.isnan(frame)]
     x = np.arange(len(frame))
-    m, t = np.polyfit(x, frame, 1)
+    try:
+        m, t = np.polyfit(x, frame, 1)
+    except:
+        m = t = 0
     linear_fit = m * x + t
     return np.sum((linear_fit - frame) ** 2)
 
