@@ -80,7 +80,10 @@ class PauseBehavior:
     def pause_lengths_avg(self):
         silence_durations = calculate_duration_ms(self.silence_ranges, self.SAMPLING_RATE)
         pause_mean = statistics.mean(silence_durations)
-        pause_std = statistics.stdev(silence_durations)
+        if len(silence_durations) > 2:
+            pause_std = statistics.stdev(silence_durations)
+        else:
+            pause_std = None
 
         return pause_mean #, pause_std
     
