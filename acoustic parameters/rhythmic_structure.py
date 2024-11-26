@@ -136,7 +136,7 @@ class PauseBehavior:
             num_fillerwords += num_pauses
 
 
-        return num_fillerwords / len(lower_transcription.split())
+        return num_fillerwords / (len(lower_transcription.split()) + 1)
 
 
 
