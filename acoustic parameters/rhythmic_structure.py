@@ -103,7 +103,7 @@ class PauseBehavior:
     def num_words_to_pauses(self):
         n_words = len(self.text.split())
         n_pauses = self.count_pause_segments()
-        standardized_pause_rate = n_words / n_pauses
+        standardized_pause_rate = n_words / (n_pauses + 1)
 
         return standardized_pause_rate
     
@@ -111,7 +111,7 @@ class PauseBehavior:
         number_of_pauses = self.count_pause_segments()
         # Counting the syllables in the transcription
         total_syllables = textstat.syllable_count(self.text)
-        pauses_per_syllable = number_of_pauses / total_syllables
+        pauses_per_syllable = number_of_pauses / (total_syllables + 1)
 
         return pauses_per_syllable
     
@@ -122,7 +122,7 @@ class PauseBehavior:
         number_of_tokens = len(tokens)
 
         # Calculating pauses per syllable
-        pauses_per_token = number_of_pauses / number_of_tokens
+        pauses_per_token = number_of_pauses / (number_of_tokens + 1)
         return pauses_per_token
     
 
