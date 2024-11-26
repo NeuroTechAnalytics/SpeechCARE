@@ -136,7 +136,7 @@ class SpeechBehavior:
             duration += (word["end"] - word["start"])
             num_phonemes += len(word["phonemes"])
 
-        return num_phonemes / duration
+        return num_phonemes / (duration + 0.1)
     
     def mean_inter_syllabic_pauses(self):
         num_silence = 0
@@ -162,7 +162,7 @@ class SpeechBehavior:
             for syllable in extract_syllables(word["phonemes"]):
                 duration = duration + (syllable["end"] - syllable["start"])
 
-        return duration / total_duration
+        return duration / (total_duration + 0.1)
 
     def vowel_duration(self):
         total_duration = len(self.data) / self.SAMPLING_RATE
@@ -174,7 +174,7 @@ class SpeechBehavior:
                 if phone["name"] in vowel_sounds:
                     vwl_dur += (phone["end"] - phone["start"])
 
-        return vwl_dur / total_duration
+        return vwl_dur / (total_duration + 0.1)
 
     def phonation_time(self):
         time = sum(list(map(lambda x: (x["end"] - x["start"]), self.all_phonemes)))
