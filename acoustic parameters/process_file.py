@@ -5,7 +5,7 @@ import librosa
 
 
 from frequency_parameters import *
-from cepstral_coefficients_and_spectral_features.py import *
+from cepstral_coefficients_and_spectral_features import *
 from voice_quality import *
 from loudness_and_intensity import *
 from complexity import *
