@@ -7,7 +7,7 @@ import string
 import nltk
 from nltk.tokenize import word_tokenize, sent_tokenize
 
-from behavior_helper import *
+from speech_fluency_and_speech_production_dynamics_helper import *
 
 nltk.download('cmudict')
 nltk.download('punkt')
