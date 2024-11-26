@@ -9,7 +9,7 @@ from cepstral_coefficients_and_spectral_features import *
 from voice_quality import *
 from loudness_and_intensity import *
 from complexity import *
-from rhythmic_structure.py import *
+from rhythmic_structure import *
 from speech_fluency_and_speech_production_dynamics import *
 import numpy as np
 import inspect
