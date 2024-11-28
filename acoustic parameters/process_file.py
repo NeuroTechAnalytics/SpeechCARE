@@ -81,12 +81,12 @@ def process_file(filepath):
     print(f"Frequency parameters: {length(results)}")
 
     # Spectral domain
-    results.append(process_row(amp_range, 'amp_range'))
-    results.append(process_row(amp_std, 'amp_std'))
+    results.append(process_row(amp_range, 'APQ_range'))
+    results.append(process_row(amp_std, 'APQ_std'))
     results.append(process_matrix(msc, 'msc'))
     results.append(process_row(np.array(centroids), 'centroids'))
     results.append(process_row(LTAS, 'LTAS'))
-    results.append({'ALPHA RATIO': ALPHA_RATIO})
+    results.append({'Harmonic_Difference': ALPHA_RATIO})
     results.append(process_matrix(LOG_MEL_SPECTROGRAM, 'LOG_MEL_SPECTROGRAM'))
     results.append(process_matrix(MFCC, 'MFCC'))
     results.append(process_matrix(LPC, 'LPC'))
