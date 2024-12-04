@@ -30,7 +30,6 @@ def process_file(filepath):
     F1 = get_formants_frame_based(data, fs, window_length_ms, window_step_ms, [1, 2, 3])
     print("PROCESSED FREQUENCY PARAMETERS...")
     # 
-    amp_range, amp_std = amplitude_range(data, fs, window_length_ms, window_step_ms)
     msc = compute_msc(data, fs, nfft=512, window_length_ms=window_length_ms, window_step_ms=window_step_ms, num_msc=13)
     centroids = spectral_centriod(data, fs, window_length_ms, window_step_ms)
     LTAS = ltas(data, fs, window_length_ms, window_step_ms)[0]
@@ -54,6 +53,8 @@ def process_file(filepath):
     APQ = None
     SHIMMER = analyze_audio_shimmer(data, fs, window_length_ms, window_step_ms)
     HNR, NHR = calculate_frame_level_hnr(data, fs, window_length_ms, window_step_ms)
+    APQ_range, APQ_std = amplitude_range(data, fs, window_length_ms, window_step_ms)
+
     print("PROCESSED VOICE QUALITY...")
 
     RMS = rms_amplitude(data, fs, window_length_ms, window_step_ms)
@@ -81,30 +82,32 @@ def process_file(filepath):
     print(f"Frequency parameters: {length(results)}")
 
     # Spectral domain
-    results.append(process_row(amp_range, 'APQ_range'))
-    results.append(process_row(amp_std, 'APQ_std'))
     results.append(process_matrix(msc, 'msc'))
     results.append(process_row(np.array(centroids), 'centroids'))
     results.append(process_row(LTAS, 'LTAS'))
-    results.append({'Harmonic_Difference': ALPHA_RATIO})
     results.append(process_matrix(LOG_MEL_SPECTROGRAM, 'LOG_MEL_SPECTROGRAM'))
     results.append(process_matrix(MFCC, 'MFCC'))
     results.append(process_matrix(LPC, 'LPC'))
     results.append(process_matrix(LPCC, 'LPCC'))
     results.append(process_matrix(ENVELOPE, 'ENVELOPE'))
     results.append(process_row(CPP, 'CPP'))
-    results.append(process_row(HAMM_INDEX, 'HAMM_INDEX'))
     results.append(process_matrix(PLP, 'PLP'))
-    results.append({'HARMONICITY': HARMONICITY})
-    results.append(process_row(ZCR, "ZCR"))
     results.append(process_matrix(lspFreq, "lspFreq"))
     print(f"Spectral Domain: {length(results)}")
 
     # Voice Quality
     # results.append(process_row(APQ, 'APQ'))
+    results.append(process_row(APQ_range, 'APQ_range'))
+    results.append(process_row(APQ_std, 'APQ_std'))
     results.append(process_row(SHIMMER, 'SHIMMER'))
     results.append(process_row(HNR, 'HNR'))
     results.append(process_row(NHR, 'NHR'))
+    results.append({'Harmonic_Difference': ALPHA_RATIO})
+    results.append(process_row(HAMM_INDEX, 'HAMM_INDEX'))
+    results.append({'HARMONICITY': HARMONICITY})
+
+
+
     print(f"Voice Quality: {length(results)}")
     
     # Loudness and intensity of the sound
@@ -119,6 +122,8 @@ def process_file(filepath):
     results.append(process_row(HFD, 'HFD'))
     results.append(process_row(FREQ_ENTROPY, 'FREQ_ENTROPY'))
     results.append(process_row(AMP_ENTROPY, 'AMP_ENTROPY'))
+    results.append(process_row(ZCR, "ZCR"))
+
     print(f"Complexity: {length(results)}")
 
     final_results = {}
