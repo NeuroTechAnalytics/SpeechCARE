@@ -100,7 +100,7 @@ class PauseBehavior:
         total_duration_s = len(self.data) / self.SAMPLING_RATE
         return pause_len / total_duration_s
     
-    def num_words_to_pauses(self):
+    def num_words_to_num_pauses(self):
         n_words = len(self.text.split())
         n_pauses = self.count_pause_segments()
         standardized_pause_rate = n_words / (n_pauses + 1)
