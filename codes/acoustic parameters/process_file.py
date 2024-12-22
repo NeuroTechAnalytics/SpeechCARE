@@ -75,15 +75,15 @@ def process_file(filepath):
     # Appending the processed results to the list
     # Frequency parameters
     results.append(process_row(F0, 'F0'))
-    results.append(process_row(np.array(jitter), 'jitter'))
+    results.append(process_row(np.array(jitter), 'Jitter'))
     results.append(process_row(F1[0, :], 'F1'))
     results.append(process_row(F1[1, :], 'F2'))
     results.append(process_row(F1[2, :], 'F3'))
     print(f"Frequency parameters: {length(results)}")
 
     # Spectral domain
-    results.append(process_matrix(msc, 'msc'))
-    results.append(process_row(np.array(centroids), 'centroids'))
+    results.append(process_matrix(msc, 'MSC'))
+    results.append(process_row(np.array(centroids), 'CENTRIODS'))
     results.append(process_row(LTAS, 'LTAS'))
     results.append(process_matrix(LOG_MEL_SPECTROGRAM, 'LOG_MEL_SPECTROGRAM'))
     results.append(process_matrix(MFCC, 'MFCC'))
@@ -92,18 +92,18 @@ def process_file(filepath):
     results.append(process_matrix(ENVELOPE, 'ENVELOPE'))
     results.append(process_row(CPP, 'CPP'))
     results.append(process_matrix(PLP, 'PLP'))
-    results.append(process_matrix(lspFreq, "lspFreq"))
+    results.append(process_matrix(lspFreq, "LSP"))
     print(f"Spectral Domain: {length(results)}")
 
     # Voice Quality
     # results.append(process_row(APQ, 'APQ'))
-    results.append(process_row(APQ_range, 'APQ_range'))
-    results.append(process_row(APQ_std, 'APQ_std'))
+    results.append(process_row(APQ_range, 'APQ1'))
+    results.append(process_row(APQ_std, 'APQ2'))
     results.append(process_row(SHIMMER, 'SHIMMER'))
     results.append(process_row(HNR, 'HNR'))
     results.append(process_row(NHR, 'NHR'))
-    results.append({'Harmonic_Difference': ALPHA_RATIO})
-    results.append(process_row(HAMM_INDEX, 'HAMM_INDEX'))
+    results.append({'ALPHA_RATIO': ALPHA_RATIO})
+    results.append(process_row(HAMM_INDEX, 'HAMMARBERG_INDEX'))
     results.append({'HARMONICITY': HARMONICITY})
 
 
@@ -181,7 +181,7 @@ def process_file_model(filepath, vad_model, utils, transcription_model):
     for i, res in enumerate(speech_behavior.regularity_of_segments()):
         s_results[f"regularity_{i}"] = res
     for i, res in enumerate(speech_behavior.alternating_regularity()):
-        s_results[f"alt_regularity_{i}"] = res
+        s_results[f"PVI_{i}"] = res
         
     relative_sentence_duration = speech_behavior.relative_sentence_duration()
     s_results.update(process_row(np.array(relative_sentence_duration), "relative_sentence_duration"))
