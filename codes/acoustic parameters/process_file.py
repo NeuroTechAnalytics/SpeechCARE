@@ -97,7 +97,6 @@ def process_file(filepath):
 
     # Voice Quality
     # results.append(process_row(APQ, 'APQ'))
-    results.append(process_row(APQ_range, 'APQ1'))
     results.append(process_row(APQ_std, 'APQ2'))
     results.append(process_row(SHIMMER, 'SHIMMER'))
     results.append(process_row(HNR, 'HNR'))
@@ -111,6 +110,7 @@ def process_file(filepath):
     print(f"Voice Quality: {length(results)}")
     
     # Loudness and intensity of the sound
+    results.append(process_row(APQ_range, 'Amplitude_Range'))
     results.append(process_row(RMS, 'RMS'))
     results.append(process_row(SPL, 'SPL'))
     results.append(process_row(PEAK, 'PEAK'))
