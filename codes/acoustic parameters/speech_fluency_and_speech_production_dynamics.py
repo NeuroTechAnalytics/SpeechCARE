@@ -199,7 +199,7 @@ class SpeechBehavior:
         ratio = locution_time_ms / total_duration_speech_ms
         return ratio
 
-    def total_speech_duration(self):
+    def token_duration(self):
         speech_durations = calculate_duration_ms(self.speech_ranges, self.SAMPLING_RATE)
         total_speech_duration_ms = sum(speech_durations)
 
