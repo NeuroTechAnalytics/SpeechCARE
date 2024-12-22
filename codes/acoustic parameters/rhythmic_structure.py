@@ -71,7 +71,7 @@ class PauseBehavior:
         pause_len = sum(calculate_duration_ms(self.silence_ranges, self.SAMPLING_RATE))
         return pause_len / total_duration
     
-    def speech_length(self):
+    def vocalic_interval(self):
         total_duration = len(self.data) / self.SAMPLING_RATE
         speech_len = sum(calculate_duration_ms(self.speech_ranges, self.SAMPLING_RATE))
         return speech_len / total_duration
@@ -93,7 +93,7 @@ class PauseBehavior:
         return ratio
     
     def pause_speech_duration_ratio(self):
-        return self.pause_length() / self.speech_length()
+        return self.pause_length() / self.vocalic_interval()
     
     def pause_totallength_ratio(self):
         pause_len = self.pause_length() / 1000
