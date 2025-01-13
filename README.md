@@ -38,9 +38,4 @@ ML classifier          |	F1-score      | 	AUC-ROC |
 |AdaBoost	| 68.85 |	75.55 |
 |XGBoost	| 60.60	| 62.22 |
 |SVM	| 71.23	| 77.93 |
-|**MLP**	| **80.5**	| **79.65** |
-
-
-## Contact
-
-For questions or inquiries, please contact elyas.esmaeili1@gmail.com
+|**MLP**	| **80.5**	| **79.65** |]
